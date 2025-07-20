@@ -11,10 +11,7 @@ public class Ctx
     {
         _api = api;
     }
-    
+
     [Command("register")]
-    public async Task Register()
-    {
-        
-    }
+    public async Task Register() { }
 }
