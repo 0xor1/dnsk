@@ -1,5 +1,3 @@
-using Common.Shared.Auth;
-using ConsoleAppFramework;
 using YamlDotNet.Serialization;
 using IApi = Dnsk.Api.IApi;
 
