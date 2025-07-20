@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnsk.DevServer", "Dnsk.DevS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnsk.Client.Test", "Dnsk.Client.Test\Dnsk.Client.Test.csproj", "{D3FF5A64-AA2E-4FC7-87AF-422FC9CEA325}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnsk.Cli", "Dnsk.Cli\Dnsk.Cli.csproj", "{5E6D57F8-2D40-48F9-A253-1534A9B97177}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,18 @@ Global
 		{D3FF5A64-AA2E-4FC7-87AF-422FC9CEA325}.Release|x64.Build.0 = Release|Any CPU
 		{D3FF5A64-AA2E-4FC7-87AF-422FC9CEA325}.Release|x86.ActiveCfg = Release|Any CPU
 		{D3FF5A64-AA2E-4FC7-87AF-422FC9CEA325}.Release|x86.Build.0 = Release|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Debug|x64.Build.0 = Debug|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Debug|x86.Build.0 = Debug|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Release|x64.ActiveCfg = Release|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Release|x64.Build.0 = Release|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E6D57F8-2D40-48F9-A253-1534A9B97177}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
