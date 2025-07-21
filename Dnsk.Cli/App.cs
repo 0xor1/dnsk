@@ -1,4 +1,3 @@
-using YamlDotNet.Serialization;
 using IApi = Dnsk.Api.IApi;
 
 namespace Dnsk.Cli;
@@ -6,20 +5,14 @@ namespace Dnsk.Cli;
 public class App
 {
     private readonly IApi _api;
-    private readonly ISerializer _serializer;
 
-    public App(IApi api, ISerializer serializer)
+    public App(IApi api)
     {
         _api = api;
-        _serializer = serializer;
     }
 
     /// <summary>
     /// Get the app configuration
     /// </summary>
-    public async Task GetConfig()
-    {
-        var config = await _api.App.GetConfig();
-        Console.WriteLine(_serializer.Serialize(config));
-    }
+    public async Task GetConfig() => Io.WriteYml(await _api.App.GetConfig());
 }

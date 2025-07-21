@@ -1,11 +1,10 @@
+using System.Reflection;
 using System.Text.Json;
 using ConsoleAppFramework;
-using IApi = Dnsk.Api.IApi;
 
 namespace Dnsk.Cli;
 
-class StateFilter([FromServices] State state, [FromServices] IApi api, ConsoleAppFilter next)
-    : ConsoleAppFilter(next)
+class StateFilter([FromServices] State state, ConsoleAppFilter next) : ConsoleAppFilter(next)
 {
     public override async Task InvokeAsync(ConsoleAppContext ctx, CancellationToken ctkn)
     {
@@ -15,13 +14,16 @@ class StateFilter([FromServices] State state, [FromServices] IApi api, ConsoleAp
         }
         finally
         {
+            // Get the executing assembly
+            var executingAssembly = Assembly.GetExecutingAssembly();
+            var name = executingAssembly.GetName().Name;
             // always save state back to ensure cookie container state is current
             state.Cookies = state.CookieContainer.GetAllCookies();
             var appDataDir = Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData,
                 Environment.SpecialFolderOption.Create
             );
-            var stateDir = Path.Join(appDataDir, "dnsk");
+            var stateDir = Path.Join(appDataDir, name);
             var filePath = Path.Join(stateDir, "state.json");
             var stateJson = JsonSerializer.Serialize(
                 state,

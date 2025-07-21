@@ -1,7 +1,6 @@
 using Common.Shared;
 using Common.Shared.Auth;
 using ConsoleAppFramework;
-using YamlDotNet.Serialization;
 using IApi = Dnsk.Api.IApi;
 
 namespace Dnsk.Cli;
@@ -9,38 +8,10 @@ namespace Dnsk.Cli;
 public class Auth
 {
     private readonly IApi _api;
-    private readonly ISerializer _serializer;
 
-    public Auth(IApi api, ISerializer serializer)
+    public Auth(IApi api)
     {
         _api = api;
-        _serializer = serializer;
-    }
-
-    private string GetSensitiveValue(string promptText)
-    {
-        Console.Write(promptText);
-        var val = string.Empty;
-        ConsoleKey key;
-        do
-        {
-            var keyInfo = Console.ReadKey(intercept: true);
-            key = keyInfo.Key;
-
-            if (key == ConsoleKey.Backspace && val.Length > 0)
-            {
-                Console.Write("\b \b");
-                val = val[0..^1];
-            }
-            else if (!char.IsControl(keyInfo.KeyChar))
-            {
-                Console.Write("*");
-                val += keyInfo.KeyChar;
-            }
-        } while (key != ConsoleKey.Enter);
-
-        Console.WriteLine();
-        return val;
     }
 
     /// <summary>
@@ -50,7 +21,7 @@ public class Auth
     public async Task GetSession(CancellationToken ctkn = default)
     {
         var ses = await _api.Auth.GetSession(ctkn);
-        Console.WriteLine(_serializer.Serialize(ses));
+        Io.WriteYml(ses);
     }
 
     /// <summary>
@@ -60,8 +31,8 @@ public class Auth
     /// <param name="ctkn"></param>
     public async Task Register([Argument] string email, CancellationToken ctkn = default)
     {
-        var pwd = GetSensitiveValue("Enter Password: ");
-        var confirmPwd = GetSensitiveValue("Confirm Password: ");
+        var pwd = Io.GetSensitiveValue("Enter Password: ");
+        var confirmPwd = Io.GetSensitiveValue("Confirm Password: ");
         if (pwd != confirmPwd)
         {
             Console.WriteLine("Passwords do not match.");
@@ -153,29 +124,22 @@ public class Auth
     /// <param name="rememberMe">If you want the session to expire after browser tab closes</param>
     public async Task SignIn([Argument] string email, [Argument] bool rememberMe = true)
     {
-        var pwd = GetSensitiveValue("Enter Password: ");
-        var ses = await _api.Auth.SignIn(new SignIn(email, pwd, rememberMe));
-        Console.WriteLine(_serializer.Serialize(ses));
+        var pwd = Io.GetSensitiveValue("Enter Password: ");
+        Io.WriteYml(await _api.Auth.SignIn(new SignIn(email, pwd, rememberMe)));
     }
 
     /// <summary>
     /// Sign out from the app
     /// </summary>
     /// <param name="ctkn"></param>
-    public async Task SignOut(CancellationToken ctkn = default)
-    {
-        var ses = await _api.Auth.SignOut(ctkn);
-        Console.WriteLine(_serializer.Serialize(ses));
-    }
+    public async Task SignOut(CancellationToken ctkn = default) =>
+        Io.WriteYml(await _api.Auth.SignOut(ctkn));
 
     /// <summary>
     /// Permanently delete your account
     /// </summary>
     /// <param name="ctkn"></param>
-    public async Task Delete(CancellationToken ctkn = default)
-    {
-        await _api.Auth.Delete(ctkn);
-    }
+    public async Task Delete(CancellationToken ctkn = default) => await _api.Auth.Delete(ctkn);
 
     /// <summary>
     /// Set your l10n settings
@@ -201,7 +165,7 @@ public class Auth
             new(lang, dateFmt, timeFmt, dateSeparator, thousandsSeparator, decimalSeparator),
             ctkn
         );
-        Console.WriteLine(_serializer.Serialize(ses));
+        Io.WriteYml(ses);
     }
 
     // these are only really relevant in a browser environment

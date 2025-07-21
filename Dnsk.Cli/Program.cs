@@ -1,12 +1,11 @@
-﻿using System.Text.Json;
+﻿using System.Reflection;
+using System.Text.Json;
 using Common.Shared;
 using ConsoleAppFramework;
 using Dnsk.Api;
 using Dnsk.Cli;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 using ZLogger;
 
 var app = ConsoleApp.Create();
@@ -18,17 +17,16 @@ app.ConfigureServices(services =>
         b.AddZLoggerConsole(x => x.LogToStandardErrorThreshold = LogLevel.Error);
         b.SetMinimumLevel(LogLevel.Information);
     });
-    services.AddScoped<ISerializer>(s =>
-        new SerializerBuilder().WithNamingConvention(UnderscoredNamingConvention.Instance).Build()
-    );
     services.AddScoped<State>(s =>
     {
+        var executingAssembly = Assembly.GetExecutingAssembly();
+        var name = executingAssembly.GetName().Name;
         var state = new State();
         var appDataDir = Environment.GetFolderPath(
             Environment.SpecialFolder.ApplicationData,
             Environment.SpecialFolderOption.Create
         );
-        var stateDir = Path.Join(appDataDir, "dnsk");
+        var stateDir = Path.Join(appDataDir, name);
         Directory.CreateDirectory(stateDir);
         var stateFilePath = Path.Join(stateDir, "state.json");
         if (!File.Exists(stateFilePath))
@@ -45,6 +43,7 @@ app.ConfigureServices(services =>
                 state = new State();
             }
         }
+
         state.CookieContainer.Add(state.Cookies);
 
         return state;
