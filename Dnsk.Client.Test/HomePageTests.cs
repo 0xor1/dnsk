@@ -6,7 +6,7 @@ public class HomePageTests : TestBase
     public async Task PageWrapper_Success()
     {
         var ali = await NewTestPack("ali");
-        ali.Ctx.RenderComponent<Dnsk.Client.Pages.HomePage>();
-        ali.Ctx.DisposeComponents();
+        ali.Ctx.Render<Dnsk.Client.Pages.HomePage>();
+        await ali.Ctx.DisposeComponentsAsync();
     }
 }

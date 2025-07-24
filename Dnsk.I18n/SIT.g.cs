@@ -1,7 +1,7 @@
 // Generated Code File, Do Not Edit.
 // This file is generated with Common.Cli.
 // see https://github.com/0xor1/common/blob/main/Common.Cli/I18n.cs
-// executed with arguments: i18n <abs_file_path_to>/Dnsk.I18n Dnsk.I18n false 
+// executed with arguments: i18n <abs_file_path_to>/Dnsk.I18n Dnsk.I18n true 
 
 using Common.Shared;
 
@@ -9,7 +9,7 @@ namespace Dnsk.I18n;
 
 public static partial class S
 {
-    private static readonly Dictionary<string, TemplatableString> IT_Strings = new ()
+    private static readonly IReadOnlyDictionary<string, TemplatableString> IT_Strings = new Dictionary<string, TemplatableString>()
     { 
         { Counter, new("Contatore") },
         { Decrement, new("Decremento") },

@@ -15,7 +15,7 @@ internal static class CounterEps
         {
             Ep<Get, Counter>.DbTx<DnskDb>(CounterRpcs.Get, Get, false),
             Ep<Nothing, Counter>.DbTx<DnskDb>(CounterRpcs.Increment, Increment),
-            Ep<Nothing, Counter>.DbTx<DnskDb>(CounterRpcs.Decrement, Decrement)
+            Ep<Nothing, Counter>.DbTx<DnskDb>(CounterRpcs.Decrement, Decrement),
         };
 
     private static async Task<Counter> Get(IRpcCtx ctx, DnskDb db, ISession ses, Get req)

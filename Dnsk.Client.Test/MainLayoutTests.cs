@@ -9,20 +9,20 @@ public class MainLayoutTest : TestBase
     public async Task Load_Success()
     {
         var ali = await NewTestPack("ali");
-        ali.Ctx.RenderComponent<Dnsk.Client.Shared.MainLayout.MainLayout>();
+        ali.Ctx.Render<Dnsk.Client.Shared.MainLayout.MainLayout>();
         var auth = ali.Ctx.Services.GetRequiredService<IAuthService>();
         await auth.SignOut();
-        ali.Ctx.DisposeComponents();
+        await ali.Ctx.DisposeComponentsAsync();
     }
 
     [Fact]
     public async Task CollapseIfNarrow_Success()
     {
         var ali = await NewTestPack("ali");
-        var aliUi = ali.Ctx.RenderComponent<Dnsk.Client.Shared.MainLayout.MainLayout>();
+        var aliUi = ali.Ctx.Render<Dnsk.Client.Shared.MainLayout.MainLayout>();
         ali.Ctx.JSInterop.Mode = JSRuntimeMode.Loose;
         ali.Ctx.JSInterop.Setup<decimal>("getWidth").SetResult(23);
         aliUi.Find(".goto-home").Click();
-        ali.Ctx.DisposeComponents();
+        await ali.Ctx.DisposeComponentsAsync();
     }
 }

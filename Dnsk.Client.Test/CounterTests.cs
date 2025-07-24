@@ -11,8 +11,8 @@ public class CounterTests : TestBase
         var aliSes = await ali.Api.Auth.GetSession();
         ali.Ctx.JSInterop.Mode = JSRuntimeMode.Loose;
         ali.Ctx.JSInterop.SetupVoid("fcmInit");
-        var aliUi = ali.Ctx.RenderComponent<Dnsk.Client.Shared.Pages.Counter>(
-            ps => ps.Add(p => p.Session, aliSes).Add(p => p.User, aliSes.Id)
+        var aliUi = ali.Ctx.Render<Dnsk.Client.Shared.Pages.Counter>(ps =>
+            ps.Add(p => p.Session, aliSes).Add(p => p.User, aliSes.Id)
         );
         var aliIncBtn = aliUi.Find(".increment");
         await aliIncBtn.ClickAsync(new MouseEventArgs());
@@ -20,6 +20,6 @@ public class CounterTests : TestBase
         var aliDecBtn = aliUi.Find(".decrement");
         await aliDecBtn.ClickAsync(new MouseEventArgs());
         aliUi.WaitForState(() => aliUi.Find(".val").TextContent == "0", TimeSpan.FromSeconds(1));
-        ali.Ctx.DisposeComponents();
+        await ali.Ctx.DisposeComponentsAsync();
     }
 }

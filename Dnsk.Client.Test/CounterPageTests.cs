@@ -6,7 +6,7 @@ public class CounterPageTests : TestBase
     public async Task PageWrapper_Success()
     {
         var ali = await NewTestPack("ali");
-        ali.Ctx.RenderComponent<Dnsk.Client.Pages.CounterPage>();
-        ali.Ctx.DisposeComponents();
+        ali.Ctx.Render<Dnsk.Client.Pages.CounterPage>();
+        await ali.Ctx.DisposeComponentsAsync();
     }
 }

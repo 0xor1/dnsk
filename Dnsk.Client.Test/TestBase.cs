@@ -21,7 +21,7 @@ public class TestBase : IDisposable
     protected async Task<TestPack> NewTestPack(string name)
     {
         var (api, email, pwd) = await RpcTestRig.NewApi(name);
-        var ctx = new TestContext();
+        var ctx = new BunitContext();
         var l = new Localizer(S.Inst);
         var ns = new NotificationService();
         Common.Client.Client.Setup(ctx.Services, l, S.Inst, ns, (IApi)api);
@@ -37,4 +37,4 @@ public class TestBase : IDisposable
     }
 }
 
-public record TestPack(IApi Api, TestContext Ctx, string Email, string Pwd);
+public record TestPack(IApi Api, BunitContext Ctx, string Email, string Pwd);
