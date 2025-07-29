@@ -25,7 +25,7 @@ public class Counter
     /// <summary>
     /// Get a users counter, defaults to yours
     /// </summary>
-    /// <param name="user">The user id to get the counter for</param>
-    public async Task Get([Argument] string? user = null) =>
+    /// <param name="user">-u, The user id to get the counter for</param>
+    public async Task Get(string? user = null) =>
         Io.WriteYml(await _api.Counter.Get(new() { User = user }));
 }
