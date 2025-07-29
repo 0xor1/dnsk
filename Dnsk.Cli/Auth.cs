@@ -1,6 +1,5 @@
 using Common.Shared;
 using Common.Shared.Auth;
-using ConsoleAppFramework;
 using IApi = Dnsk.Api.IApi;
 
 namespace Dnsk.Cli;
