@@ -1,16 +1,22 @@
 using System.Net;
 using Common.Shared;
+using Newtonsoft.Json;
 
 namespace Dnsk.Cli;
 
 [Serializable]
 public class State
 {
+    [JsonProperty]
     internal string BaseHref { get; set; } = "https://dnsk.dans-demos.com/";
 
+    [JsonProperty]
     internal CookieCollection Cookies { get; set; } = new();
+
+    [JsonProperty]
     internal CookieContainer CookieContainer { get; set; } = new();
 
+    [JsonProperty]
     internal Dictionary<string, string> Values { get; set; } = new();
 
     public string? GetString(string key) => Values.GetValueOrDefault(key, null);

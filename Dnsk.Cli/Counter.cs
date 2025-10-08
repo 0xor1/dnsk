@@ -1,4 +1,3 @@
-using ConsoleAppFramework;
 using Dnsk.Api;
 
 namespace Dnsk.Cli;

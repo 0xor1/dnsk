@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
-using System.Text.Json;
 using Common.Shared;
 using ConsoleAppFramework;
 using Dnsk.Api;
 using Dnsk.Cli;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using ZLogger;
 
 var app = ConsoleApp.Create();
@@ -37,7 +37,7 @@ app.ConfigureServices(services =>
         var stateStr = File.ReadAllText(stateFilePath);
         if (!stateStr.IsNullOrEmpty())
         {
-            state = JsonSerializer.Deserialize<State>(stateStr);
+            state = JsonConvert.DeserializeObject<State>(stateStr);
             if (state == null || state.BaseHref.IsNullOrEmpty())
             {
                 state = new State();
