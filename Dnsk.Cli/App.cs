@@ -14,5 +14,6 @@ public class App
     /// <summary>
     /// Get the app configuration
     /// </summary>
-    public async Task GetConfig(CancellationToken ctkn = default) => Io.WriteYml(await _api.App.GetConfig(ctkn));
+    public async Task GetConfig(CancellationToken ctkn = default) =>
+        Io.WriteYml(await _api.App.GetConfig(ctkn));
 }

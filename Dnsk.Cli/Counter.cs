@@ -14,12 +14,14 @@ public class Counter
     /// <summary>
     /// Increment your counter
     /// </summary>
-    public async Task Increment(CancellationToken ctkn = default) => Io.WriteYml(await _api.Counter.Increment(ctkn));
+    public async Task Increment(CancellationToken ctkn = default) =>
+        Io.WriteYml(await _api.Counter.Increment(ctkn));
 
     /// <summary>
     /// Decrement your counter
     /// </summary>
-    public async Task Decrement(CancellationToken ctkn = default) => Io.WriteYml(await _api.Counter.Decrement(ctkn));
+    public async Task Decrement(CancellationToken ctkn = default) =>
+        Io.WriteYml(await _api.Counter.Decrement(ctkn));
 
     /// <summary>
     /// Get a users counter, defaults to yours

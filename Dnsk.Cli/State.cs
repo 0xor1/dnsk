@@ -44,7 +44,8 @@ public class State
         return null;
     }
 
-    public void SetInt(string key, int? value) => SetString(key, value == null ? null : value.ToString());
+    public void SetInt(string key, int? value) =>
+        SetString(key, value == null ? null : value.ToString());
 
     public bool? GetBool(string key)
     {
@@ -57,7 +58,8 @@ public class State
         return null;
     }
 
-    public void SetBool(string key, bool? value) => SetString(key, value == null ? null : value.ToString());
+    public void SetBool(string key, bool? value) =>
+        SetString(key, value == null ? null : value.ToString());
 
     public float? GetFloat(string key)
     {
@@ -69,7 +71,9 @@ public class State
 
         return null;
     }
-    public void SetFloat(string key, float? value) => SetString(key, value == null ? null : value.ToString());
+
+    public void SetFloat(string key, float? value) =>
+        SetString(key, value == null ? null : value.ToString());
 
     public double? GetDouble(string key)
     {
@@ -81,8 +85,9 @@ public class State
 
         return null;
     }
-    
-    public void SetDouble(string key, double? value) => SetString(key, value == null ? null : value.ToString());
+
+    public void SetDouble(string key, double? value) =>
+        SetString(key, value == null ? null : value.ToString());
 
     public decimal? GetDecimal(string key)
     {
@@ -94,8 +99,9 @@ public class State
 
         return null;
     }
-    
-    public void SetDecimal(string key, decimal? value) => SetString(key, value == null ? null : value.ToString());
+
+    public void SetDecimal(string key, decimal? value) =>
+        SetString(key, value == null ? null : value.ToString());
 
     public DateTime? GetDateTime(string key)
     {
@@ -107,6 +113,7 @@ public class State
 
         return null;
     }
-    
-    public void SetDateTime(string key, DateTime? value) => SetString(key, value == null ? null : value.ToString());
+
+    public void SetDateTime(string key, DateTime? value) =>
+        SetString(key, value == null ? null : value.ToString());
 }
